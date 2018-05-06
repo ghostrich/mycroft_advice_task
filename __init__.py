@@ -27,27 +27,25 @@ LOGGER = getLogger(__name__)
 
 
 class AdviceSkill(MycroftSkill):
-    def __init__(self):
-        super(AdviceSkill, self).__init__(name="AdviceSkill")
+	def __init__(self):
+    		super(AdviceSkill, self).__init__(name="AdviceSkill")
 
-    def initialize(self):
+	def initialize(self):
 		advice_intent = IntentBuilder("AdviceIntent"). \
-            require("AdviceKeyword").build()
-        self.register_intent(advice_intent, self.handle_advice_intent)   
-        
-         
+		require("AdviceKeyword").build()
+		self.register_intent(advice_intent, self.handle_advice_intent)   
         
 
-    def handle_advice_intent(self, message):
+	def handle_advice_intent(self, message):
 		url = 'http://api.adviceslip.com/advice'
 		r = requests.get(url)
 		json_output = r.json()
 		#print (json_output['slip']['advice'])
-        self.speak("Some advice: {}".format(json_output['slip']['advice']))
+        	self.speak("Some advice: {}".format(json_output['slip']['advice']))
 
-    def stop(self):
-        pass
+	def stop(self):
+		pass
 
 
 def create_skill():
-    return AdviceSkill()
+	return AdviceSkill()
