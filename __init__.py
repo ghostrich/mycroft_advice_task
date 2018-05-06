@@ -31,7 +31,6 @@ class AdviceSkill(MycroftSkill):
         super(AdviceSkill, self).__init__(name="AdviceSkill")
 
     def initialize(self):
-    
 		advice_intent = IntentBuilder("AdviceIntent"). \
             require("AdviceKeyword").build()
         self.register_intent(advice_intent, self.handle_advice_intent)   
